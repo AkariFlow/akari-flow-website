@@ -1,6 +1,6 @@
 /* ==========================================================================
    AKARI FLOW — STYLESHEET
-   Built from the Akari Flow Brand Guidelines v1.0
+   Built from the Akari Flow Brand Guidelines v2.0
    Fonts: Noto Serif (Light / SemiBold) + Noto Sans (Regular / Medium / SemiBold)
    ========================================================================== */
 
@@ -11,18 +11,22 @@
    -------------------------------------------------------------------------- */
 :root {
 
-    /* Brand color palette (see Brand Guidelines, Sec. 05) */
-    --color-cream:        #FFF5D9;   /* Akari Cream — primary light   */
-    --color-cream-dim:    #EDE2C2;   /* Cream Dim   — secondary light */
-    --color-ink:          #14181C;   /* Deep Ink    — primary dark    */
-    --color-ink-soft:     #1E252B;   /* Ink Soft    — elevated dark surfaces */
-    --color-tide:         #1F2B37;   /* Tidal Teal  — secondary dark  */
-    --color-ember:        #6B140C;   /* Ember Red   — accent, use sparingly */
-    --color-ember-deep:   #4A0E08;   /* Ember Red, hover/pressed state */
-    --color-sage:         #8F8E78;   /* Moonlight Sage — muted neutral */
-    --color-paper:        #FBF7ED;   /* Paper — off-white background */
-    --color-line:         #D9CFAF;   /* Line — borders & dividers */
-    --color-body:         #4B473C;   /* Body Grey — body copy on light */
+    /* Brand color palette (see Brand Guidelines v2.0, Sec. 05–06) */
+    --color-navy:        #13212B;   /* Abyss Navy    — dominant: hero, nav, footer, dark sections */
+    --color-ocean:       #1E4255;   /* Ocean Blue    — cards/panels on dark, primary button surface */
+    --color-wave:        #3D6679;   /* Wave Blue     — icons, charts, secondary accents, button hover */
+    --color-cream:       #FFF4DB;   /* Moonlight     — text on dark, logo, negative space */
+    --color-cream-dim:   #93A7B0;   /* Moonlight dim — secondary text on dark surfaces */
+    --color-mist:        #E6DEC8;   /* Mist          — card fills, light-section backgrounds, borders */
+    --color-ember:       #8E3522;   /* Ember         — CTA text/links, notifications; never a background fill */
+    --color-ember-deep:  #6E2A1A;   /* Ember, darker — hover/pressed state for ember text/links */
+    --color-gold:        #E6B45D;   /* Sunrise Gold  — tiny highlights only, never dominant */
+    --color-ink:         #14181C;   /* Dark Ink      — body text & headings on light surfaces (unchanged from v1.0) */
+    --color-ink-soft:    #1A2C38;   /* elevated dark surface, between Navy and Ocean */
+    --color-sage:        var(--color-wave);  /* v1.0 alias — muted captions/support text now reads as Wave Blue */
+    --color-paper:       var(--color-cream); /* page background = Moonlight ("negative space") */
+    --color-line:        var(--color-mist);  /* borders/dividers = Mist, per brand guide */
+    --color-body:        #4B5560;   /* Body Grey — cooler, oceanic body copy tone */
 
     /* Typography */
     --font-serif:        'Noto Serif', Georgia, 'Times New Roman', serif;
@@ -184,11 +188,19 @@ p {
 }
 
 .section {
-    padding-block: 96px;
+    padding: 120px 0;
 }
 
 .section--tight {
     padding-block: 56px;
+}
+
+.section h2 {
+    margin-bottom: 16px;
+}
+
+.section .lede {
+    max-width: 700px;
 }
 
 /* Divider matching brand rule treatment (see Sec. 01–11 headers) */
@@ -198,6 +210,11 @@ p {
     background-color: var(--color-ember);
     border: none;
     margin-block: 18px;
+}
+
+/* Use on dark (Navy/Ocean) surfaces so the divider stays visible */
+.rule--on-dark {
+    background-color: var(--color-gold);
 }
 
 /* --------------------------------------------------------------------------
@@ -218,24 +235,37 @@ p {
     white-space: nowrap;
 }
 
+/* Primary — Ocean Blue surface, Wave Blue on hover, Moonlight text */
 .btn--primary {
-    background-color: var(--color-ember);
+    background-color: var(--color-ocean);
     color: var(--color-cream);
 }
 
 .btn--primary:hover {
-    background-color: var(--color-ember-deep);
+    background-color: var(--color-wave);
 }
 
+/* Ghost — for use on dark (Navy/Ocean) surfaces: transparent + Moonlight border */
 .btn--ghost {
     background-color: transparent;
     color: var(--color-cream);
-    border: 1px solid rgba(255, 245, 217, 0.35);
+    border: 1px solid rgba(255, 244, 219, 0.35);
 }
 
 .btn--ghost:hover {
     border-color: var(--color-cream);
-    background-color: rgba(255, 245, 217, 0.08);
+    background-color: rgba(255, 244, 219, 0.08);
+}
+
+/* Outline — the light-surface equivalent of Ghost: transparent + Dark Ink */
+.btn--outline {
+    border: 1px solid var(--color-line);
+    color: var(--color-ink);
+    background: transparent;
+}
+
+.btn--outline:hover {
+    background: var(--color-mist);
 }
 
 /* --------------------------------------------------------------------------
@@ -245,8 +275,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: var(--color-ink);
-    border-bottom: 1px solid rgba(255, 245, 217, 0.08);
+    background-color: var(--color-navy);
+    border-bottom: 1px solid rgba(255, 244, 219, 0.08);
 }
 
 header nav {
@@ -295,7 +325,7 @@ header nav .container {
     bottom: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--color-ember);
+    background-color: var(--color-gold);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform var(--transition-base);
@@ -309,6 +339,7 @@ header nav .container {
     transform: scaleX(1);
 }
 
+/* Header CTA uses the same Primary treatment as .btn--primary */
 .nav-button {
     display: inline-flex;
     align-items: center;
@@ -319,14 +350,14 @@ header nav .container {
     font-weight: var(--weight-sans-semibold);
     letter-spacing: 0.5px;
     color: var(--color-cream);
-    background-color: var(--color-ember);
+    background-color: var(--color-ocean);
     border-radius: var(--radius);
     white-space: nowrap;
     transition: background-color var(--transition-fast);
 }
 
 .nav-button:hover {
-    background-color: var(--color-ember-deep);
+    background-color: var(--color-wave);
 }
 
 /* Responsive nav — collapses gracefully without requiring a menu toggle.
@@ -371,7 +402,7 @@ header nav .container {
    7. FOOTER
    -------------------------------------------------------------------------- */
 footer {
-    background-color: var(--color-ink);
+    background-color: var(--color-navy);
     color: var(--color-cream-dim);
     padding-block: 56px 32px;
 }
@@ -394,6 +425,9 @@ main {
 
 /* ==========================================================================
    HERO
+   Colors only, for now — this still uses the light two-column layout you
+   built. The v2.0 proposal calls for a full navy/wave-art hero; that's a
+   layout change, saved for Step 3 so we're not doing two things at once.
 ========================================================================== */
 
 .hero {
@@ -403,7 +437,7 @@ main {
     background: linear-gradient(
         180deg,
         var(--color-paper) 0%,
-        #f6f0e4 100%
+        #F6EFD8 100%
     );
 }
 
@@ -428,29 +462,26 @@ main {
     gap: 16px;
 }
 
-.btn--outline {
-    border: 1px solid var(--color-line);
-    color: var(--color-ink);
-    background: transparent;
-}
-
-.btn--outline:hover {
-    background: var(--color-cream);
-}
-
 .hero-image {
     display: flex;
     justify-content: center;
 }
 
+.hero-support {
+    margin-top: 32px;
+    font-size: var(--text-small);
+    color: var(--color-sage);
+    max-width: 420px;
+}
+
 .placeholder-dashboard {
     width: 100%;
     max-width: 560px;
-    background: white;
+    background: var(--color-mist);
     border: 1px solid var(--color-line);
     border-radius: 12px;
     padding: 28px;
-    box-shadow: 0 20px 60px rgba(20, 24, 28, .08);
+    box-shadow: 0 20px 60px rgba(19, 33, 43, .12);
 }
 
 .dashboard-header {
@@ -475,22 +506,6 @@ main {
 }
 
 /* ==========================================================================
-   GENERIC SECTIONS
-========================================================================== */
-
-.section {
-    padding: 120px 0;
-}
-
-.section h2 {
-    margin-bottom: 16px;
-}
-
-.section .lede {
-    max-width: 700px;
-}
-
-/* ==========================================================================
    RESPONSIVE
 ========================================================================== */
 
@@ -506,6 +521,7 @@ main {
     }
 
 }
+
 /* ==========================================================================
    SERVICES
 ========================================================================== */
@@ -528,7 +544,7 @@ main {
 
 .service-card {
     padding: 40px;
-    background: white;
+    background: var(--color-mist);
     border: 1px solid var(--color-line);
     border-radius: 12px;
     transition: transform .25s ease,
@@ -537,7 +553,7 @@ main {
 
 .service-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 45px rgba(20,24,28,.08);
+    box-shadow: 0 20px 45px rgba(19, 33, 43, .12);
 }
 
 .service-icon {
@@ -562,6 +578,10 @@ main {
     color: var(--color-ember);
 }
 
+.service-card a:hover {
+    color: var(--color-ember-deep);
+}
+
 @media (max-width:900px){
 
     .services-grid{
@@ -570,15 +590,4 @@ main {
 
     }
 
-}
-
-/* ==========================================================================
-   HERO SUPPORT TEXT
-========================================================================== */
-
-.hero-support {
-    margin-top: 32px;
-    font-size: var(--text-small);
-    color: var(--color-sage);
-    max-width: 420px;
 }
