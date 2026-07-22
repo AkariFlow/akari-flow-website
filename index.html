@@ -38,13 +38,18 @@
         <img class="logo-mark" src="assets/img/logo/akari-icon-cream.png" alt="" width="26" height="26" />
         Akari Flow
       </a>
-      <ul class="nav-links">
+
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#process">How It Works</a></li>
         <li><a href="#packages">Solutions</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li class="nav-links__cta"><a href="#contact" class="nav-button">Schedule Free Audit</a></li>
       </ul>
-      <a href="#contact" class="nav-button">Schedule Free Audit</a>
     </div>
   </nav>
 </header>
@@ -70,7 +75,7 @@
           <a href="#process" class="btn btn--ghost">How It Works</a>
         </div>
         <p class="hero-support">
-          <strong>Lead follow-up. Scheduling. Customer communication.</strong> Everyday tasks that should happen automatically.
+          <strong>Lead follow-up. Scheduling. Customer communication.</strong> <br>Everyday tasks that should happen automatically.
         </p>
       </div>
 
@@ -249,7 +254,36 @@
 
 <footer>
   <div class="container">
-    <p>© 2026 Akari Flow. Simple systems for growing businesses.</p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img class="logo-mark" src="assets/img/logo/akari-icon-cream.png" alt="" width="26" height="26" />
+          Akari Flow
+        </a>
+        <p>Simple systems for growing businesses — one trusted partner instead of a dozen disconnected tools.</p>
+      </div>
+
+      <div class="footer-col">
+        <span class="caption">Site</span>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#process">How It Works</a></li>
+          <li><a href="#packages">Solutions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="caption">Get Started</span>
+        <ul>
+          <li><a href="#contact">Schedule Free Audit</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Akari Flow. All rights reserved.</p>
+    </div>
   </div>
 </footer>
 
