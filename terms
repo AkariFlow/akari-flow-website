@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms of Service | Akari Flow</title>
+<meta name="description" content="The terms that govern use of the Akari Flow website and services." />
+<meta name="theme-color" content="#13212B" />
+<meta name="robots" content="noindex" />
+
+<link rel="stylesheet" href="css/style.css" />
+<link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <nav aria-label="Primary Navigation">
+    <div class="container">
+      <a href="/" class="logo">
+        <img class="logo-mark" src="assets/logo/akari-icon-cream.png" alt="" width="26" height="26" />
+        Akari Flow
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#process">How It Works</a></li>
+        <li><a href="/#packages">Solutions</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li class="nav-links__cta"><a href="/#calendly-widget" class="nav-button">Schedule Free Audit</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <section class="legal-hero">
+    <div class="container">
+      <p class="eyebrow eyebrow--on-dark">Legal</p>
+      <h1>Terms of Service</h1>
+      <p class="legal-updated">Effective Date: July 22, 2026</p>
+    </div>
+  </section>
+
+  <section class="legal-body section--tight">
+    <div class="container">
+
+      <div class="legal-note">
+        <p>
+          <strong>Before publishing:</strong> replace each bracketed placeholder [ ] below with your
+          business's actual details, and have this document reviewed by qualified legal counsel
+          prior to publication.
+        </p>
+      </div>
+
+      <h2>1. Acceptance of Terms</h2>
+      <p>
+        These Terms of Service ("Terms") constitute a binding agreement between you and Akari
+        Flow ("Akari Flow," "the Company," "we," "us," or "our") governing your access to and use
+        of akariflow.com (the "Site") and any services described therein. By accessing the Site or
+        scheduling a consultation with the Company, you acknowledge that you have read, understood,
+        and agree to be bound by these Terms. If you do not agree to these Terms, you are not
+        authorized to access or use the Site.
+      </p>
+
+      <h2>2. Description of Services</h2>
+      <p>
+        Akari Flow provides business operations consulting and automation services, including
+        website audits, workflow reviews, and related advisory services, as described on the
+        Site (collectively, the "Services"). The specific scope, deliverables, pricing, and
+        timeline applicable to any engagement will be set forth in a separate proposal, statement
+        of work, or services agreement between the Company and the client. These Terms govern use
+        of the Site and do not, by themselves, constitute a services agreement.
+      </p>
+
+      <h2>3. Scheduling of Consultations</h2>
+      <p>
+        The Site utilizes Calendly to facilitate the scheduling of consultations. By submitting a
+        booking request, you represent that the information provided is accurate and complete, and
+        you agree to Calendly's own terms of use governing the scheduling tool. The Company
+        reserves the right, in its sole discretion, to decline or reschedule any booking, including
+        where a request falls outside the industries or services the Company supports.
+      </p>
+
+      <h2>4. No Guarantee of Results</h2>
+      <p>
+        Any recommendations, audits, or operational plans provided by the Company are based on the
+        information available at the time of the applicable engagement and are intended to provide
+        guidance, not to guarantee any particular outcome. The Company makes no representation or
+        warranty regarding specific business results, including revenue growth or time savings, as
+        such outcomes depend on factors beyond the Company's control.
+      </p>
+
+      <h2>5. Intellectual Property</h2>
+      <p>
+        All content on the Site, including text, design elements, graphics, and logos, is owned by
+        the Company or its licensors and is protected under applicable intellectual property laws.
+        Except as necessary to use the Site for its intended purpose, no portion of the Site may be
+        reproduced, distributed, or otherwise used without the Company's prior written consent.
+      </p>
+
+      <h2>6. Acceptable Use</h2>
+      <p>In connection with your use of the Site, you agree that you will not:</p>
+      <ul>
+        <li>Use the Site for any unlawful purpose;</li>
+        <li>Attempt to obtain unauthorized access to the Site or its underlying systems;</li>
+        <li>Interfere with or disrupt the Site's normal operation, including its scheduling functionality; or</li>
+        <li>Submit false or misleading information in connection with a consultation request.</li>
+      </ul>
+
+      <h2>7. Third-Party Services</h2>
+      <p>
+        The Site may link to, or incorporate, third-party services, including its scheduling
+        provider. The Company does not control such third parties and is not responsible for their
+        content, availability, or business practices. Use of any third-party service is governed
+        by that provider's own terms and policies.
+      </p>
+
+      <h2>8. Disclaimer of Warranties</h2>
+      <p>
+        The Site is provided on an "as is" and "as available" basis, without warranties of any
+        kind, whether express or implied, including, without limitation, warranties of
+        merchantability, fitness for a particular purpose, and non-infringement, to the fullest
+        extent permitted by applicable law.
+      </p>
+
+      <h2>9. Limitation of Liability</h2>
+      <p>
+        To the fullest extent permitted by applicable law, the Company shall not be liable for any
+        indirect, incidental, special, or consequential damages arising out of or relating to use
+        of the Site or the Services. [This section, together with any applicable liability caps or
+        exclusions, should be reviewed and tailored by legal counsel in light of the specific
+        services offered and the law of the governing jurisdiction.]
+      </p>
+
+      <h2>10. Indemnification</h2>
+      <p>
+        You agree to indemnify and hold the Company harmless from any claims, damages, or expenses
+        arising from your use of the Site or your violation of these Terms. [To be reviewed and
+        finalized with legal counsel.]
+      </p>
+
+      <h2>11. Modifications to These Terms</h2>
+      <p>
+        The Company reserves the right to modify these Terms at any time. The "Effective Date"
+        above reflects the date of the most recent revision. Continued use of the Site following
+        any such modification constitutes acceptance of the revised Terms.
+      </p>
+
+      <h2>12. Governing Law</h2>
+      <p>
+        These Terms shall be governed by and construed in accordance with the laws of the State of
+        [Your State], without regard to its conflict of laws principles. [Confirm this reflects the
+        state in which the Company is incorporated or primarily operates.]
+      </p>
+
+      <h2>13. Contact Information</h2>
+      <p>
+        Questions regarding these Terms may be directed to [Contact Email] or [Business Address].
+      </p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img class="logo-mark" src="assets/logo/akari-icon-cream.png" alt="" width="26" height="26" />
+          Akari Flow
+        </a>
+        <p>Simple systems for growing businesses — one trusted partner instead of a dozen disconnected tools.</p>
+      </div>
+
+      <div class="footer-col">
+        <span class="caption">Site</span>
+        <ul>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#process">How It Works</a></li>
+          <li><a href="/#packages">Solutions</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="caption">Get Started</span>
+        <ul>
+          <li><a href="/#calendly-widget">Schedule Free Audit</a></li>
+          <li><a href="/#contact">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <span class="caption">Legal</span>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Akari Flow. All rights reserved.</p>
+      <p><a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms.html">Terms of Service</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
