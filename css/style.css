@@ -709,7 +709,7 @@ main { display: block; }
     position: relative;
     overflow: hidden;
 }
-.contact-section .container {
+.contact-columns {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
     gap: 56px;
@@ -728,13 +728,31 @@ main { display: block; }
 .contact-list li { font-family: var(--font-sans); font-size: 0.95rem; color: var(--color-cream); display: flex; gap: 12px; align-items: flex-start; }
 .contact-list img { flex-shrink: 0; margin-top: 2px; }
 
+.calendly-wrap {
+    margin-top: 96px;
+    padding-top: 64px;
+    border-top: 1px solid rgba(255,244,219,0.1);
+    text-align: center;
+}
+.calendly-wrap .eyebrow { margin-bottom: 24px; }
+.calendly-wrap .calendly-inline-widget {
+    max-width: 900px;
+    margin-inline: auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 30px 70px -30px rgba(0,0,0,.5);
+}
+
 @media (max-width: 900px) {
-    .contact-section .container { grid-template-columns: 1fr; text-align: center; gap: 48px; }
+    .contact-columns { grid-template-columns: 1fr; text-align: center; gap: 48px; }
     .contact-list li { justify-content: center; text-align: left; max-width: 360px; margin-inline: auto; }
     .contact-list { gap: 24px; }
     .contact-card { padding: 32px 28px; }
     .contact-section .btn { margin-inline: auto; }
+    .calendly-wrap { margin-top: 64px; padding-top: 48px; }
+    .calendly-wrap .calendly-inline-widget { min-width: 0 !important; }
 }
+
 
 /* ==========================================================================
    MOBILE OPTIMIZATION

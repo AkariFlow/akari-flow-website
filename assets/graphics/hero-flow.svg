@@ -1,78 +1,168 @@
 <svg viewBox="0 0 540 460" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nodeFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22384A"/>
+      <stop offset="100%" stop-color="#152531"/>
+    </linearGradient>
+
+    <linearGradient id="mainStroke" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#3D6679"/>
+      <stop offset="100%" stop-color="#E6B45D"/>
+    </linearGradient>
+
+    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E6B45D" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#E6B45D" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="finalGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E6B45D" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#E6B45D" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="ambient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3D6679" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#3D6679" stop-opacity="0"/>
+    </radialGradient>
+
+    <filter id="blur-lg" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="blur-md" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <filter id="blur-sm" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+
   <style>
-    .flow-node-bg { fill: #1A2C38; stroke: rgba(255,244,219,0.14); }
-    .flow-node-icon { stroke: #93A7B0; }
-    .flow-label { font-family: 'Noto Sans', Arial, sans-serif; font-size: 9.5px; font-weight: 500; fill: #93A7B0; letter-spacing: 0.3px; }
-
-    .flow-node { animation: flow-float 6s cubic-bezier(0.4,0,0.2,1) infinite; transform-box: fill-box; transform-origin: center; }
-    .flow-node:nth-of-type(2) { animation-delay: -1.4s; }
-    .flow-node:nth-of-type(3) { animation-delay: -3s; }
-    .flow-node:nth-of-type(4) { animation-delay: -4.4s; }
-    @keyframes flow-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-
-    .flow-path {
-      fill: none; stroke: #3D6679; stroke-width: 1.5; stroke-linecap: round;
-      stroke-dasharray: 6 6; opacity: 0.4; animation: flow-dash 9s linear infinite;
+    .label {
+      font-family: 'Noto Sans', Arial, sans-serif;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      fill: #7C93A0;
     }
-    @keyframes flow-dash { to { stroke-dashoffset: -48; } }
+    .node-icon { stroke: #5C8598; stroke-width: 1.4; fill: none; }
+    .node-ring { fill: url(#nodeFill); stroke: rgba(255,244,219,0.09); stroke-width: 1; }
 
-    .flow-path-main {
-      fill: none; stroke: #E6B45D; stroke-width: 2.25; stroke-linecap: round;
-      stroke-dasharray: 420; stroke-dashoffset: 420;
-      animation: flow-draw 2.4s cubic-bezier(0.16,1,0.3,1) 0.3s forwards;
+    .node {
+      animation: drift 7s cubic-bezier(0.4,0,0.2,1) infinite;
+      transform-box: fill-box;
+      transform-origin: center;
     }
-    @keyframes flow-draw { to { stroke-dashoffset: 0; } }
+    .node.n2 { animation-delay: -2.1s; }
+    .node.n3 { animation-delay: -4.3s; }
+    @keyframes drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-    .flow-hub-ring {
-      fill: none; stroke: #E6B45D; stroke-width: 1; opacity: 0.35;
+    .flow-line {
+      fill: none; stroke: #3D6679; stroke-width: 1.25; opacity: 0.32;
+    }
+
+    .particle { fill: #E6B45D; filter: url(#blur-sm); }
+
+    .main-line {
+      fill: none; stroke: url(#mainStroke); stroke-width: 2; stroke-linecap: round;
+      stroke-dasharray: 300; stroke-dashoffset: 300;
+      animation: draw 1.8s cubic-bezier(0.16,1,0.3,1) 0.4s forwards;
+    }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    .hub-core { fill: #E6B45D; }
+    .hub-ring {
+      fill: none; stroke: #E6B45D; stroke-width: 1; opacity: 0;
       transform-box: fill-box; transform-origin: center;
-      animation: flow-pulse 5.5s cubic-bezier(0.4,0,0.2,1) infinite;
+      animation: pulse 4.2s cubic-bezier(0.4,0,0.2,1) 1.6s infinite;
     }
-    @keyframes flow-pulse {
-      0% { transform: scale(1); opacity: 0.35; }
-      60% { transform: scale(1.12); opacity: 0; }
-      100% { transform: scale(1); opacity: 0; }
+    .hub-ring.r2 { animation-delay: 3.6s; }
+    @keyframes pulse {
+      0% { transform: scale(0.6); opacity: 0.5; }
+      70% { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(1.8); opacity: 0; }
     }
-    .flow-hub { fill: #8E3522; }
+
+    .final-ring {
+      fill: none; stroke: #E6B45D; stroke-width: 1; opacity: 0.3;
+      transform-box: fill-box; transform-origin: center;
+      animation: pulse-soft 5s cubic-bezier(0.4,0,0.2,1) infinite;
+    }
+    @keyframes pulse-soft {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.08); opacity: 0.55; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .node, .hub-ring, .final-ring, .particle { animation: none !important; }
+      .main-line { animation: none !important; stroke-dashoffset: 0; }
+      .hub-ring { opacity: 0; }
+    }
   </style>
 
-  <!-- scattered tool nodes -->
-  <g class="flow-node">
-    <rect class="flow-node-bg" x="18" y="40" width="86" height="60" rx="10"/>
-    <path class="flow-node-icon" d="M40 60h42M40 72h30" stroke-width="1.6" stroke-linecap="round"/>
-    <text class="flow-label" x="61" y="118" text-anchor="middle">Leads</text>
+  <!-- ambient background bloom -->
+  <circle cx="430" cy="90" r="150" fill="url(#ambient)"/>
+
+  <!-- connecting lines: three scattered tools flowing toward the hub -->
+  <path id="p1" class="flow-line" d="M95,75 C150,75 170,140 226,196"/>
+  <path id="p2" class="flow-line" d="M80,235 C160,235 190,215 222,206"/>
+  <path id="p3" class="flow-line" d="M105,365 C180,365 195,260 222,214"/>
+
+  <!-- traveling light particles along each connecting line -->
+  <circle class="particle" r="2.6">
+    <animateMotion dur="3.4s" repeatCount="indefinite" begin="0s">
+      <mpath href="#p1"/>
+    </animateMotion>
+  </circle>
+  <circle class="particle" r="2.6">
+    <animateMotion dur="3.4s" repeatCount="indefinite" begin="-1.4s">
+      <mpath href="#p2"/>
+    </animateMotion>
+  </circle>
+  <circle class="particle" r="2.6">
+    <animateMotion dur="3.4s" repeatCount="indefinite" begin="-2.6s">
+      <mpath href="#p3"/>
+    </animateMotion>
+  </circle>
+
+  <!-- source nodes -->
+  <g class="node n1">
+    <circle class="node-ring" cx="65" cy="75" r="30"/>
+    <path class="node-icon" d="M53 68h24M53 76h16M53 84h20"/>
+    <text class="label" x="65" y="122" text-anchor="middle">Leads</text>
   </g>
 
-  <g class="flow-node">
-    <rect class="flow-node-bg" x="6" y="200" width="86" height="60" rx="10"/>
-    <path class="flow-node-icon" d="M27 222h44v28H27z M27 222l22 16 22-16" stroke-width="1.4" stroke-linejoin="round" fill="none"/>
-    <text class="flow-label" x="49" y="278" text-anchor="middle">Email</text>
+  <g class="node n2">
+    <circle class="node-ring" cx="50" cy="235" r="30"/>
+    <path class="node-icon" d="M37 227h26v18H37z M37 227l13 10 13-10"/>
+    <text class="label" x="50" y="282" text-anchor="middle">Email</text>
   </g>
 
-  <g class="flow-node">
-    <rect class="flow-node-bg" x="30" y="330" width="86" height="60" rx="10"/>
-    <rect class="flow-node-icon" x="49" y="348" width="48" height="30" rx="3" fill="none" stroke-width="1.4"/>
-    <path class="flow-node-icon" d="M58 348v-8m30 8v-8" stroke-width="1.4" stroke-linecap="round"/>
-    <text class="flow-label" x="73" y="408" text-anchor="middle">Scheduling</text>
+  <g class="node n3">
+    <circle class="node-ring" cx="75" cy="365" r="30"/>
+    <rect class="node-icon" x="61" y="356" width="28" height="20" rx="2"/>
+    <path class="node-icon" d="M67 356v-6m16 6v-6M61 364h28"/>
+    <text class="label" x="75" y="412" text-anchor="middle">Scheduling</text>
   </g>
 
-  <!-- meandering dashed lines from chaos toward the hub -->
-  <path class="flow-path" d="M104 70 C160 70 170 140 230 190"/>
-  <path class="flow-path" d="M92 230 C170 230 190 210 230 200"/>
-  <path class="flow-path" d="M116 360 C190 360 195 260 230 212"/>
+  <!-- convergence hub: soft bloom + pulsing rings + core -->
+  <circle cx="238" cy="204" r="70" fill="url(#hubGlow)" filter="url(#blur-lg)"/>
+  <circle class="hub-ring" cx="238" cy="204" r="12"/>
+  <circle class="hub-ring r2" cx="238" cy="204" r="12"/>
+  <circle class="hub-core" cx="238" cy="204" r="5.5"/>
 
-  <!-- convergence hub -->
-  <circle class="flow-hub-ring" cx="238" cy="204" r="20"/>
-  <circle class="flow-hub" cx="238" cy="204" r="7"/>
+  <!-- the single unified stream, flowing out to the result -->
+  <path class="main-line" d="M248,202 C 320,202 315,132 412,120"/>
 
-  <!-- single clean stream flowing out to the result -->
-  <path class="flow-path-main" d="M245 204 C 330 204 320 130 420 118"/>
+  <!-- traveling highlight along the main stream -->
+  <circle class="particle" r="3.2">
+    <animateMotion dur="2.8s" repeatCount="indefinite" begin="2.4s" path="M248,202 C 320,202 315,132 412,120"/>
+  </circle>
 
-  <g class="flow-node">
-    <rect class="flow-node-bg" x="404" y="82" width="104" height="72" rx="12"/>
-    <circle cx="428" cy="106" r="10" fill="none" stroke="#E6B45D" stroke-width="1.6"/>
-    <path d="M423 106l3 3 6-7" stroke="#E6B45D" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <text class="flow-label" x="456" y="132" text-anchor="middle">One</text>
-    <text class="flow-label" x="456" y="144" text-anchor="middle">System</text>
-  </g>
+  <!-- destination: one unified system -->
+  <circle cx="456" cy="118" r="58" fill="url(#finalGlow)" filter="url(#blur-md)"/>
+  <circle class="final-ring" cx="456" cy="118" r="40"/>
+  <circle class="node-ring" cx="456" cy="118" r="34" stroke="rgba(230,180,93,0.35)"/>
+  <path d="M443 118l8 8 16-18" stroke="#E6B45D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text class="label" x="456" y="150" text-anchor="middle" style="fill:#93A7B0;">One System</text>
 </svg>

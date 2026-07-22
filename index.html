@@ -48,7 +48,7 @@
         <li><a href="#process">How It Works</a></li>
         <li><a href="#packages">Solutions</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li class="nav-links__cta"><a href="#contact" class="nav-button">Schedule Free Audit</a></li>
+        <li class="nav-links__cta"><a href="#calendly-widget" class="nav-button">Schedule Free Audit</a></li>
       </ul>
     </div>
   </nav>
@@ -66,7 +66,7 @@
           Akari Flow helps small businesses eliminate repetitive tasks, organize their tools, and create simple systems that keep work moving.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn--primary">
+          <a href="#calendly-widget" class="btn btn--primary">
             Schedule Free Audit
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -75,7 +75,7 @@
           <a href="#process" class="btn btn--ghost">How It Works</a>
         </div>
         <p class="hero-support">
-          <strong>Lead follow-up. Scheduling. Customer communication.</strong> <br>Everyday tasks that should happen automatically.
+          <strong>Lead follow-up. Scheduling. Customer communication.</strong> Everyday tasks that should happen automatically.
         </p>
       </div>
 
@@ -216,36 +216,43 @@
   <!-- ======================================== CONTACT ========================================= -->
   <section id="contact" class="section contact-section">
     <div class="container">
-      <div class="reveal">
-        <p class="eyebrow eyebrow--on-dark">Get Started</p>
-        <h2>Let's improve your business operations</h2>
-        <p class="lede">
-          Schedule a free operations review and discover where your business can save time, reduce friction, and run more efficiently.
-        </p>
-        <a href="#" class="btn btn--primary">
-          Schedule Free Audit
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+      <div class="contact-columns">
+        <div class="reveal">
+          <p class="eyebrow eyebrow--on-dark">Get Started</p>
+          <h2>Let's improve your business operations</h2>
+          <p class="lede">
+            Schedule a free operations review and discover where your business can save time, reduce friction, and run more efficiently.
+          </p>
+          <a href="#calendly-widget" class="btn btn--primary">
+            Schedule Free Audit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="contact-card reveal">
+          <span class="caption">What To Expect</span>
+          <ul class="contact-list">
+            <li>
+              <img src="assets/icons/check.svg" alt="" width="18" height="18" />
+              A free, no-pressure review of how your business runs today
+            </li>
+            <li>
+              <img src="assets/icons/check.svg" alt="" width="18" height="18" />
+              A clear picture of where time and leads are slipping through
+            </li>
+            <li>
+              <img src="assets/icons/check.svg" alt="" width="18" height="18" />
+              A straightforward plan, with no obligation to move forward
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="contact-card reveal">
-        <span class="caption">What To Expect</span>
-        <ul class="contact-list">
-          <li>
-            <img src="assets/icons/check.svg" alt="" width="18" height="18" />
-            A free, no-pressure review of how your business runs today
-          </li>
-          <li>
-            <img src="assets/icons/check.svg" alt="" width="18" height="18" />
-            A clear picture of where time and leads are slipping through
-          </li>
-          <li>
-            <img src="assets/icons/check.svg" alt="" width="18" height="18" />
-            A straightforward plan, with no obligation to move forward
-          </li>
-        </ul>
+      <div class="calendly-wrap reveal" id="calendly-widget">
+        <p class="eyebrow eyebrow--on-dark" style="justify-content:center;">Pick A Time</p>
+        <div class="calendly-inline-widget" data-url="https://calendly.com/d/dvrr-8tw-62j?background_color=fff4db&text_color=1e4255&primary_color=13212b" style="min-width:320px;height:700px;"></div>
       </div>
     </div>
   </section>
@@ -275,7 +282,7 @@
       <div class="footer-col">
         <span class="caption">Get Started</span>
         <ul>
-          <li><a href="#contact">Schedule Free Audit</a></li>
+          <li><a href="#calendly-widget">Schedule Free Audit</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
       </div>
@@ -288,5 +295,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
