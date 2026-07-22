@@ -1,69 +1,97 @@
 // ==========================================================================
 // AKARI FLOW — main.js
-// Small, dependency-free progressive enhancements:
-//   1. Scroll-reveal for elements marked .reveal
-//   2. Header gains a shadow/solid background once the page scrolls
-//   3. Mobile hamburger menu toggle
-// Both respect prefers-reduced-motion via the CSS in style.css.
+// Handles: mobile nav toggle (with aria-expanded kept in sync), sticky
+// header scroll state, and the .reveal scroll-in animation system.
 // ==========================================================================
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
 
-  // --- Scroll reveal -------------------------------------------------------
-  const revealEls = document.querySelectorAll('.reveal');
+  /* ---------------------------------------------------------------------
+     Mobile nav toggle
+     Keeps header.nav-open, the button's aria-expanded, and its
+     accessible label all in sync with the menu's actual open/closed state.
+  --------------------------------------------------------------------- */
+  var header = document.querySelector('header');
+  var navToggle = document.querySelector('.nav-toggle');
+  var navLinks = document.getElementById('nav-links');
 
-  if ('IntersectionObserver' in window && revealEls.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-
-    revealEls.forEach((el) => observer.observe(el));
-  } else {
-    // No IntersectionObserver support — just show everything.
-    revealEls.forEach((el) => el.classList.add('is-visible'));
-  }
-
-  // --- Sticky header shadow -------------------------------------------------
-  const header = document.querySelector('header');
-  if (header) {
-    const toggleHeaderShadow = () => {
-      header.classList.toggle('is-scrolled', window.scrollY > 8);
+  if (header && navToggle && navLinks) {
+    var closeMenu = function () {
+      header.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
     };
-    toggleHeaderShadow();
-    window.addEventListener('scroll', toggleHeaderShadow, { passive: true });
-  }
 
-  // --- Mobile hamburger menu -------------------------------------------------
-  const navToggle = document.querySelector('.nav-toggle');
-  const closeMenu = () => {
-    if (header) header.classList.remove('nav-open');
-    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
-  };
-  if (navToggle && header) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = header.classList.toggle('nav-open');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-  }
+    var openMenu = function () {
+      header.classList.add('nav-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      navToggle.setAttribute('aria-label', 'Close menu');
+    };
 
-  // --- Smooth in-page anchor scroll (fallback for browsers without CSS support) -
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      const id = link.getAttribute('href');
-      if (id.length > 1) {
-        const target = document.querySelector(id);
-        if (target) {
-          e.preventDefault();
-          closeMenu();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+    navToggle.addEventListener('click', function () {
+      var isOpen = header.classList.contains('nav-open');
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
       }
     });
-  });
+
+    // Close the menu after choosing a link, and on outside click / Escape.
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('click', function (event) {
+      var isOpen = header.classList.contains('nav-open');
+      if (isOpen && !header.contains(event.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && header.classList.contains('nav-open')) {
+        closeMenu();
+        navToggle.focus();
+      }
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     Sticky header shadow/background once the page has scrolled
+  --------------------------------------------------------------------- */
+  if (header) {
+    var updateHeaderScrollState = function () {
+      if (window.scrollY > 8) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    };
+    updateHeaderScrollState();
+    window.addEventListener('scroll', updateHeaderScrollState, { passive: true });
+  }
+
+  /* ---------------------------------------------------------------------
+     Scroll-reveal: adds .is-visible to .reveal elements as they enter
+     the viewport. Falls back gracefully (elements stay visible) if
+     IntersectionObserver isn't supported.
+  --------------------------------------------------------------------- */
+  var revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window && revealEls.length) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 
 });
