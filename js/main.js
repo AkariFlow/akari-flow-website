@@ -1,7 +1,8 @@
 // ==========================================================================
 // AKARI FLOW — main.js
 // Handles: mobile nav toggle (with aria-expanded kept in sync), sticky
-// header scroll state, and the .reveal scroll-in animation system.
+// header scroll state, the .reveal scroll-in animation system, and the
+// Calendly booking-confirmation redirect (for Google Ads conversion tracking).
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -92,6 +93,28 @@ document.addEventListener('DOMContentLoaded', function () {
     revealEls.forEach(function (el) { revealObserver.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------------------------------------------------------------------
+     Calendly booking confirmation → redirect to /thank-you.html
+     Calendly's embedded iframe never navigates to a new URL on its own,
+     so Google Ads (and Analytics) have nothing to detect as a "conversion
+     page." Calendly posts a window message the instant a booking is
+     confirmed — we listen for that and redirect manually, only on pages
+     that actually have the Calendly widget embedded.
+  --------------------------------------------------------------------- */
+  var calendlyWidget = document.querySelector('.calendly-inline-widget');
+
+  if (calendlyWidget) {
+    window.addEventListener('message', function (event) {
+      // Only trust messages that actually come from Calendly's domain.
+      if (typeof event.data !== 'object' || event.data === null) return;
+      if (!/^https:\/\/calendly\.com/.test(event.origin)) return;
+
+      if (event.data.event === 'calendly.event_scheduled') {
+        window.location.href = '/thank-you.html';
+      }
+    });
   }
 
 });
