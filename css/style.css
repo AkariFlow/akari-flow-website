@@ -531,6 +531,7 @@ main { display: block; }
     margin: 20px 0 24px;
     color: var(--color-cream);
     max-width: 15ch;
+    text-wrap: balance
 }
 
 .hero-content .lede {
@@ -538,6 +539,7 @@ main { display: block; }
     font-size: 1.2rem;
     color: var(--color-cream-dim);
     max-width: 46ch;
+    text-wrap: balance
 }
 
 .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
