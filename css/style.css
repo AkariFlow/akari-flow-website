@@ -812,51 +812,45 @@ main { display: block; }
 }
 
 /* ==========================================================================
-   PAGE HERO — compact header for interior pages (services, industries).
-   Same dark gradient language as the homepage hero, but sized for content,
-   not a full-viewport entrance. No illustration, no scroll-past.
+   INTERIOR HERO — compact header for interior pages (services, industries,
+   legal). Same dark gradient language as the homepage hero, but sized for
+   content, not a full-viewport entrance. No illustration, no scroll-past.
+   Legal pages add the --legal modifier for a smaller headline and
+   tighter bottom padding, since they don't need a CTA button below.
 ========================================================================== */
-.page-hero {
+.interior-hero {
     background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-ink-soft) 100%);
     padding: 72px 0 64px;
 }
-.page-hero .eyebrow { margin-bottom: 18px; }
-.page-hero h1 {
+.interior-hero .eyebrow { margin-bottom: 18px; }
+.interior-hero h1 {
     color: var(--color-cream);
     max-width: 20ch;
     text-wrap: balance;
 }
-.page-hero .lede {
+.interior-hero .lede {
     margin-top: 20px;
     color: var(--color-cream-dim);
     max-width: 56ch;
     font-size: 1.1rem;
 }
-.page-hero .hero-actions { margin-top: 32px; }
+.interior-hero .hero-actions { margin-top: 32px; }
 
-@media (max-width: 700px) {
-    .page-hero { padding: 56px 0 40px; }
-}
-
-/* ==========================================================================
-   LEGAL PAGES (Privacy Policy / Terms of Service)
-========================================================================== */
-.legal-hero {
-    background: linear-gradient(160deg, var(--color-navy) 0%, var(--color-ink-soft) 100%);
-    padding: 72px 0 56px;
-}
-.legal-hero .eyebrow { margin-bottom: 18px; }
-.legal-hero h1 {
-    color: var(--color-cream);
-    font-size: var(--text-h1);
-    max-width: 30ch;
-}
-.legal-hero .legal-updated {
+.interior-hero--legal { padding-bottom: 56px; }
+.interior-hero--legal h1 { font-size: var(--text-h1); max-width: 30ch; }
+.interior-hero .legal-updated {
     margin-top: 14px;
     font-size: var(--text-small);
     color: var(--color-cream-dim);
 }
 
+@media (max-width: 700px) {
+    .interior-hero { padding: 56px 0 40px; }
+}
+
+/* ==========================================================================
+   LEGAL PAGE BODY (Privacy Policy / Terms of Service)
+========================================================================== */
 .legal-body { padding: 72px 0 128px; }
 .legal-body .container { max-width: 820px; }
 
@@ -898,7 +892,6 @@ main { display: block; }
 .legal-note p { margin-bottom: 0; }
 
 @media (max-width: 700px) {
-    .legal-hero { padding: 56px 0 40px; }
     .legal-body { padding: 48px 0 84px; }
 }
 
