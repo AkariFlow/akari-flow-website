@@ -742,6 +742,7 @@ main { display: block; }
     font-size: var(--text-small);
     color: var(--color-ember);
     transition: gap var(--transition-fast), color var(--transition-fast);
+    text-wrap: balance,
 }
 .service-card a:hover { color: var(--color-ember-deep); gap: 10px; }
 
