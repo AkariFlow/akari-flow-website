@@ -709,6 +709,7 @@ main { display: block; }
     border: 1px solid var(--color-line);
     border-radius: var(--radius-lg);
     transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    text-wrap: balance;
 }
 
 .service-card:hover {
@@ -742,7 +743,6 @@ main { display: block; }
     font-size: var(--text-small);
     color: var(--color-ember);
     transition: gap var(--transition-fast), color var(--transition-fast);
-    text-wrap: balance,
 }
 .service-card a:hover { color: var(--color-ember-deep); gap: 10px; }
 
