@@ -37,17 +37,4 @@
     <priority>0.3</priority>
   </url>
 
-  <!--
-    NOT included yet -- add once built and live:
-    /services/ai-integration.html
-    /services/documentation-sops.html
-    /industries/contractors.html
-    /industries/beauty-wellness.html
-    /industries/food-hospitality.html
-    /industries/professional-services.html
-
-    Intentionally excluded -- conversion/confirmation page, not content:
-    /thank-you.html  (mark <meta name="robots" content="noindex"> on that page instead)
-  -->
-
 </urlset>
