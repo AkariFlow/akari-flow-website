@@ -22,31 +22,58 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "What does it mean to connect or integrate business software?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It means the tools you already use, your calendar, your invoicing app, your customer list, automatically share information with each other. A new booking updates your calendar and creates a customer record on its own, instead of you typing the same details into three separate apps."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does it mean to connect or integrate business software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It means the tools you already use, your calendar, your invoicing app, your customer list, automatically share information with each other. A new booking updates your calendar and creates a customer record on its own, instead of you typing the same details into three separate apps."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need AI to run my small business more efficiently?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily, and it's rarely the first fix worth making. Most small businesses lose more time to disconnected tools and repeated data entry than to anything AI would solve. Connecting the software you already have usually closes most of that gap before AI even enters the conversation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I know which software tools my business actually needs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start by listing what you already pay for and use weekly. Most small businesses don't need more tools, they need the ones they already have to talk to each other. Adding a new app is usually the last step, not the first, and only makes sense once the existing tools are working together."
+          }
+        }
+      ]
     },
     {
-      "@type": "Question",
-      "name": "Do I need AI to run my small business more efficiently?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Not necessarily, and it's rarely the first fix worth making. Most small businesses lose more time to disconnected tools and repeated data entry than to anything AI would solve. Connecting the software you already have usually closes most of that gap before AI even enters the conversation."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I know which software tools my business actually needs?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Start by listing what you already pay for and use weekly. Most small businesses don't need more tools, they need the ones they already have to talk to each other. Adding a new app is usually the last step, not the first, and only makes sense once the existing tools are working together."
-      }
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://akariflow.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://akariflow.com/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI & Software Integration",
+          "item": "https://akariflow.com/services/ai-integration.html"
+        }
+      ]
     }
   ]
 }

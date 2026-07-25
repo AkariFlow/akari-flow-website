@@ -22,31 +22,58 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "How do I stop double-booking appointments?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Double bookings almost always happen when scheduling lives in more than one place, a paper calendar, a phone, and an app that don't talk to each other. Putting every booking source into one shared calendar, with automatic conflict checks, removes the chance of two people claiming the same slot."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I stop double-booking appointments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Double bookings almost always happen when scheduling lives in more than one place, a paper calendar, a phone, and an app that don't talk to each other. Putting every booking source into one shared calendar, with automatic conflict checks, removes the chance of two people claiming the same slot."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I reduce no-shows for appointments?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most no-shows come down to forgetting, not flaking. An automatic reminder sent a day before and again a couple hours before the appointment catches the majority of them. Making it easy to reschedule with one tap also helps, since a customer who can't easily change the time is more likely to just skip it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the best way to manage scheduling for a small business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with one shared calendar that everyone, including customers, books into directly instead of calling or texting you to check availability. Add automatic reminders and confirmations on top of that. Most small businesses don't need complicated scheduling software, they need one clear system instead of three overlapping ones."
+          }
+        }
+      ]
     },
     {
-      "@type": "Question",
-      "name": "How do I reduce no-shows for appointments?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most no-shows come down to forgetting, not flaking. An automatic reminder sent a day before and again a couple hours before the appointment catches the majority of them. Making it easy to reschedule with one tap also helps, since a customer who can't easily change the time is more likely to just skip it."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What's the best way to manage scheduling for a small business?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Start with one shared calendar that everyone, including customers, books into directly instead of calling or texting you to check availability. Add automatic reminders and confirmations on top of that. Most small businesses don't need complicated scheduling software, they need one clear system instead of three overlapping ones."
-      }
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://akariflow.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://akariflow.com/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Scheduling & Operations",
+          "item": "https://akariflow.com/services/scheduling-operations.html"
+        }
+      ]
     }
   ]
 }

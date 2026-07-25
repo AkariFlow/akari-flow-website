@@ -22,31 +22,58 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "What is an SOP for a small business?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "An SOP, or standard operating procedure, is a written, step-by-step description of how a task gets done in your business. It's the difference between 'ask the owner how to do it' and 'read the three steps and do it the same way every time.' Small businesses usually only need a handful of these to cover the tasks that come up most often."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an SOP for a small business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An SOP, or standard operating procedure, is a written, step-by-step description of how a task gets done in your business. It's the difference between 'ask the owner how to do it' and 'read the three steps and do it the same way every time.' Small businesses usually only need a handful of these to cover the tasks that come up most often."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why can't my business run without me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Usually because the important knowledge, how to quote a job, how to handle a specific kind of customer request, what order steps happen in, only exists in your head. If nobody else has written access to that knowledge, every decision routes back through you, even ones your team could easily make on their own."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I document my business processes without spending weeks on it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start with the two or three tasks that get repeated the most or that only you know how to do. Write down the steps in plain language as you actually do them, not how a textbook would describe it. A short, accurate document that covers your most common task beats a long, perfect manual that never gets finished."
+          }
+        }
+      ]
     },
     {
-      "@type": "Question",
-      "name": "Why can't my business run without me?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Usually because the important knowledge, how to quote a job, how to handle a specific kind of customer request, what order steps happen in, only exists in your head. If nobody else has written access to that knowledge, every decision routes back through you, even ones your team could easily make on their own."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I document my business processes without spending weeks on it?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Start with the two or three tasks that get repeated the most or that only you know how to do. Write down the steps in plain language as you actually do them, not how a textbook would describe it. A short, accurate document that covers your most common task beats a long, perfect manual that never gets finished."
-      }
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://akariflow.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://akariflow.com/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Documentation & SOPs",
+          "item": "https://akariflow.com/services/documentation-sops.html"
+        }
+      ]
     }
   ]
 }

@@ -22,31 +22,60 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "How do I stop missing customer calls?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Most missed calls happen because there's no backup plan for when you can't answer. A simple text-back or auto-reply that fires the moment a call is missed keeps the customer from calling your competitor instead. The fix isn't answering every call yourself, it's making sure no call goes unanswered."
-      }
+      "@type": "FAQPage",
+      "@id": "https://akariflow.com/services/customer-communication.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I stop missing customer calls?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most missed calls happen because there's no backup plan for when you can't answer. A simple text-back or auto-reply that fires the moment a call is missed keeps the customer from calling your competitor instead. The fix isn't answering every call yourself, it's making sure no call goes unanswered."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do leads go cold before I get a chance to call them back?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Speed matters more than most owners realize. A lead who fills out a form or leaves a message is often comparing you to two or three other businesses at the same time. If a day passes before you respond, they've usually already booked with someone else. A same-day or same-hour follow-up habit closes that gap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I improve customer communication without hiring someone?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Start by writing down the handful of messages you send over and over, the missed call reply, the appointment reminder, the follow-up after a job. Those repeated messages are the easiest ones to set up so they go out automatically, which covers most of the gap without adding headcount."
+          }
+        }
+      ]
     },
     {
-      "@type": "Question",
-      "name": "Why do leads go cold before I get a chance to call them back?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Speed matters more than most owners realize. A lead who fills out a form or leaves a message is often comparing you to two or three other businesses at the same time. If a day passes before you respond, they've usually already booked with someone else. A same-day or same-hour follow-up habit closes that gap."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I improve customer communication without hiring someone?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Start by writing down the handful of messages you send over and over, the missed call reply, the appointment reminder, the follow-up after a job. Those repeated messages are the easiest ones to set up so they go out automatically, which covers most of the gap without adding headcount."
-      }
+      "@type": "BreadcrumbList",
+      "@id": "https://akariflow.com/services/customer-communication.html#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://akariflow.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://akariflow.com/#services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Customer Communication",
+          "item": "https://akariflow.com/services/customer-communication.html"
+        }
+      ]
     }
   ]
 }
