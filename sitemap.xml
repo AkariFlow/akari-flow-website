@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://akariflow.com/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://akariflow.com/services/business-systems.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://akariflow.com/services/customer-communication.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://akariflow.com/services/scheduling-operations.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://akariflow.com/privacy-policy.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://akariflow.com/terms.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!--
+    NOT included yet -- add once built and live:
+    /services/ai-integration.html
+    /services/documentation-sops.html
+    /industries/contractors.html
+    /industries/beauty-wellness.html
+    /industries/food-hospitality.html
+    /industries/professional-services.html
+
+    Intentionally excluded -- conversion/confirmation page, not content:
+    /thank-you.html  (mark <meta name="robots" content="noindex"> on that page instead)
+  -->
+
+</urlset>
