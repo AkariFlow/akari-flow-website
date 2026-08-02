@@ -401,6 +401,57 @@ header.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) ro
 
 .nav-links__cta { display: none; }
 
+/* --- Dropdown submenus (Services / Industries) ---------------------------
+   Desktop: hover or keyboard-focus reveals an absolutely-positioned panel,
+   styled like a small floating card in the same dark, elevated language
+   as the mobile nav panel below. Mobile: no hover, so the submenu is just
+   left visible in-flow, nested under its parent link — simplest reliable
+   behavior on touch without adding a JS accordion. */
+.nav-dropdown { position: relative; }
+
+.nav-caret {
+    display: inline-block;
+    font-size: 0.7em;
+    margin-left: 3px;
+    transition: transform var(--transition-fast);
+}
+.nav-dropdown:hover .nav-caret,
+.nav-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 248px;
+    background: var(--color-ink-soft);
+    border: 1px solid rgba(255,244,219,0.1);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 48px -20px rgba(0,0,0,.55);
+    padding: 8px;
+    z-index: 200;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    display: block;
+}
+
+.nav-dropdown-menu li a {
+    display: block;
+    padding: 12px 16px;
+    font-size: var(--text-small);
+    white-space: nowrap;
+    color: var(--color-cream-dim);
+    border-radius: var(--radius);
+}
+.nav-dropdown-menu li a::after { display: none; }
+.nav-dropdown-menu li a:hover {
+    color: var(--color-cream);
+    background: rgba(255,244,219,0.06);
+}
+
 @media (max-width: 860px) {
     header nav .container { height: auto; padding-block: 16px; position: relative; }
     header nav { height: auto; }
@@ -437,6 +488,27 @@ header.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) ro
 
     .nav-links__cta { display: block; padding: 10px 8px 4px; }
     .nav-links .nav-button { display: flex; width: 100%; }
+
+    /* No hover on touch — submenu just stays open, indented under its
+       parent link, instead of relying on :hover or :focus-within. */
+    .nav-dropdown-menu {
+        display: block;
+        position: static;
+        transform: none;
+        min-width: 0;
+        margin: 0 0 4px 12px;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    .nav-dropdown-menu li a {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        color: var(--color-cream-dim);
+        opacity: 0.85;
+    }
+    .nav-caret { display: none; }
 }
 
 
