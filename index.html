@@ -473,11 +473,360 @@
         </div>
       </div>
 
-      <div class="calendly-wrap" id="calendly-widget">
-        <p class="eyebrow eyebrow--on-dark" style="justify-content:center;">Pick A Time</p>
-        <div class="calendly-inline-widget" data-url="https://calendly.com/d/dvrr-8tw-62j?background_color=fff4db&text_color=1e4255&primary_color=13212b" style="min-width:100%;height:700px;"></div>
-      </div>
+      <!-- ============================================================
+     AKARI FLOW — CUSTOM BOOKING WIDGET
+     Drop this in to REPLACE the entire existing:
+       <div class="calendly-wrap" id="calendly-widget"> ... </div>
+     block in index.html, and remove the old Calendly <script> tag
+     at the bottom of the file.
+
+     Before using: paste your deployed Apps Script Web App URL into
+     the APPS_SCRIPT_URL constant near the bottom of the <script>.
+     ============================================================ -->
+
+<div class="calendly-wrap" id="calendly-widget">
+  <p class="eyebrow eyebrow--on-dark" style="justify-content:center;">Pick A Time</p>
+
+  <div id="akf-booking" class="akf-booking">
+
+    <!-- STEP 1: loading state -->
+    <div id="akf-loading" class="akf-state">
+      <div class="akf-spinner" aria-hidden="true"></div>
+      <p>Checking available times…</p>
     </div>
+
+    <!-- STEP 2: day tabs + time slots -->
+    <div id="akf-picker" class="akf-picker" style="display:none;">
+      <div id="akf-days" class="akf-days" role="tablist" aria-label="Choose a day"></div>
+      <div id="akf-slots" class="akf-slots"></div>
+    </div>
+
+    <!-- STEP 3: booking form (appears once a slot is picked) -->
+    <form id="akf-form" class="akf-form" style="display:none;">
+      <button type="button" id="akf-back" class="akf-back">&larr; Choose a different time</button>
+
+      <p class="akf-selected-time" id="akf-selected-time"></p>
+
+      <div class="akf-form-grid">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="text" name="company" placeholder="Business name" required />
+        <input type="tel" name="phone" placeholder="Phone number" required />
+        <input type="email" name="email" placeholder="Email" required />
+      </div>
+      <textarea name="notes" placeholder="Anything you'd like me to know beforehand? (optional)" rows="3"></textarea>
+
+      <button type="submit" class="btn btn--primary akf-submit">
+        <span class="akf-submit-label">Confirm Booking</span>
+        <span class="akf-submit-spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+
+    <!-- STEP 4: confirmation state -->
+    <div id="akf-success" class="akf-state" style="display:none;">
+      <div class="akf-check" aria-hidden="true">&#10003;</div>
+      <h3>You're booked.</h3>
+      <p id="akf-success-detail"></p>
+      <p class="akf-success-note">A calendar invite is on its way to your email.</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="akf-error" class="akf-state akf-state--error" style="display:none;">
+      <p id="akf-error-message">Something went wrong. Please try again, or reach out directly.</p>
+      <button type="button" id="akf-retry" class="btn btn--outline">Try Again</button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .akf-booking {
+    max-width: 720px;
+    margin-inline: auto;
+    background: var(--color-ink-soft);
+    border: 1px solid rgba(255,244,219,0.1);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    box-shadow: 0 30px 70px -30px rgba(0,0,0,.5);
+    text-align: left;
+  }
+
+  .akf-state {
+    text-align: center;
+    padding: 32px 0;
+    color: var(--color-cream-dim);
+  }
+  .akf-state h3 { color: var(--color-cream); margin: 12px 0 8px; }
+  .akf-state--error { color: var(--color-gold); }
+
+  .akf-spinner, .akf-submit-spinner {
+    width: 28px; height: 28px;
+    border: 3px solid rgba(255,244,219,0.15);
+    border-top-color: var(--color-gold);
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    animation: akf-spin 0.8s linear infinite;
+  }
+  .akf-submit-spinner {
+    display: none;
+    width: 16px; height: 16px;
+    border-width: 2px;
+    margin: 0 0 0 8px;
+  }
+  @keyframes akf-spin { to { transform: rotate(360deg); } }
+
+  .akf-check {
+    width: 48px; height: 48px;
+    margin: 0 auto 12px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: bold;
+  }
+
+  .akf-days {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255,244,219,0.1);
+  }
+  .akf-day-btn {
+    flex: 0 0 auto;
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,244,219,0.14);
+    background: transparent;
+    color: var(--color-cream-dim);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: var(--weight-sans-medium);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease;
+  }
+  .akf-day-btn:hover { border-color: var(--color-cream); color: var(--color-cream); }
+  .akf-day-btn.is-active {
+    background: var(--color-ocean);
+    border-color: var(--color-ocean);
+    color: var(--color-cream);
+  }
+
+  .akf-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+  .akf-slot-btn {
+    padding: 12px 8px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,244,219,0.14);
+    background: transparent;
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+    font-weight: var(--weight-sans-medium);
+    cursor: pointer;
+    transition: background-color 150ms ease, transform 150ms ease;
+  }
+  .akf-slot-btn:hover {
+    background: var(--color-ocean);
+    transform: translateY(-2px);
+  }
+
+  .akf-form { animation: akf-fade 200ms ease; }
+  @keyframes akf-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .akf-back {
+    background: none;
+    border: none;
+    color: var(--color-cream-dim);
+    font-size: var(--text-small);
+    cursor: pointer;
+    margin-bottom: 16px;
+    padding: 0;
+  }
+  .akf-back:hover { color: var(--color-cream); }
+
+  .akf-selected-time {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--color-cream);
+    margin-bottom: 20px;
+  }
+
+  .akf-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .akf-form input, .akf-form textarea {
+    width: 100%;
+    padding: 13px 14px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,244,219,0.14);
+    background: rgba(255,244,219,0.04);
+    color: var(--color-cream);
+    font-family: var(--font-sans);
+    font-size: var(--text-small);
+  }
+  .akf-form input::placeholder, .akf-form textarea::placeholder { color: var(--color-cream-dim); }
+  .akf-form textarea { grid-column: 1 / -1; margin-bottom: 20px; resize: vertical; }
+  .akf-form input:focus, .akf-form textarea:focus {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 1px;
+  }
+
+  .akf-submit { width: 100%; }
+  .akf-submit.is-loading .akf-submit-spinner { display: inline-block; }
+  .akf-submit.is-loading { opacity: 0.8; pointer-events: none; }
+
+  .akf-success-note { font-size: var(--text-small); opacity: 0.8; margin-top: 8px; }
+
+  @media (max-width: 600px) {
+    .akf-booking { padding: 24px; }
+    .akf-form-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+(function() {
+  // ============================================================
+  // CONFIG — paste your deployed Apps Script Web App URL here
+  // ============================================================
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRm5ty5QDhF2zTkCgOkyocyvUfK6FC8qcjjtyb1JOlKp0DP6oQwO04E2z0YnSzvLX5/exec";
+
+  const els = {
+    loading: document.getElementById("akf-loading"),
+    picker: document.getElementById("akf-picker"),
+    days: document.getElementById("akf-days"),
+    slots: document.getElementById("akf-slots"),
+    form: document.getElementById("akf-form"),
+    back: document.getElementById("akf-back"),
+    selectedTime: document.getElementById("akf-selected-time"),
+    success: document.getElementById("akf-success"),
+    successDetail: document.getElementById("akf-success-detail"),
+    error: document.getElementById("akf-error"),
+    errorMessage: document.getElementById("akf-error-message"),
+    retry: document.getElementById("akf-retry"),
+  };
+
+  let availabilityData = null;
+  let selectedSlotISO = null;
+
+  function showOnly(el) {
+    [els.loading, els.picker, els.form, els.success, els.error].forEach(function(e) {
+      e.style.display = "none";
+    });
+    el.style.display = "block";
+  }
+
+  function fmtTime(iso) {
+    return new Date(iso).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  }
+
+  function loadAvailability() {
+    showOnly(els.loading);
+    fetch(APPS_SCRIPT_URL + "?action=availability")
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        if (data.error) throw new Error(data.error);
+        availabilityData = data;
+        if (!data.days || data.days.length === 0) {
+          throw new Error("No open times in the next couple weeks — reach out directly instead.");
+        }
+        renderDays();
+        showOnly(els.picker);
+      })
+      .catch(function(err) {
+        els.errorMessage.textContent = err.message || "Couldn't load availability. Please try again.";
+        showOnly(els.error);
+      });
+  }
+
+  function renderDays() {
+    els.days.innerHTML = "";
+    availabilityData.days.forEach(function(day, i) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "akf-day-btn" + (i === 0 ? " is-active" : "");
+      btn.textContent = day.label;
+      btn.addEventListener("click", function() {
+        document.querySelectorAll(".akf-day-btn").forEach(function(b) { b.classList.remove("is-active"); });
+        btn.classList.add("is-active");
+        renderSlots(day);
+      });
+      els.days.appendChild(btn);
+    });
+    renderSlots(availabilityData.days[0]);
+  }
+
+  function renderSlots(day) {
+    els.slots.innerHTML = "";
+    day.slots.forEach(function(iso) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "akf-slot-btn";
+      btn.textContent = fmtTime(iso);
+      btn.addEventListener("click", function() {
+        selectedSlotISO = iso;
+        els.selectedTime.textContent = day.label + " at " + fmtTime(iso);
+        showOnly(els.form);
+      });
+      els.slots.appendChild(btn);
+    });
+  }
+
+  els.back.addEventListener("click", function() {
+    showOnly(els.picker);
+  });
+
+  els.retry.addEventListener("click", loadAvailability);
+
+  els.form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const submitBtn = els.form.querySelector(".akf-submit");
+    submitBtn.classList.add("is-loading");
+
+    const formData = new FormData(els.form);
+    const payload = {
+      start: selectedSlotISO,
+      name: formData.get("name"),
+      company: formData.get("company"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      notes: formData.get("notes"),
+    };
+
+    // Sent as text/plain on purpose — Apps Script Web Apps don't
+    // handle CORS preflight (OPTIONS) requests, so application/json
+    // triggers a browser preflight that fails. text/plain skips
+    // the preflight entirely while still delivering valid JSON
+    // in the body, which doGet/doPost parses normally.
+    fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload),
+    })
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        submitBtn.classList.remove("is-loading");
+        if (!data.success) throw new Error(data.error || "Booking failed.");
+        els.successDetail.textContent = els.selectedTime.textContent + " — see you then, " + payload.name.split(" ")[0] + ".";
+        showOnly(els.success);
+      })
+      .catch(function(err) {
+        submitBtn.classList.remove("is-loading");
+        els.errorMessage.textContent = err.message || "That didn't go through. Please try again.";
+        showOnly(els.error);
+      });
+  });
+
+  loadAvailability();
+})();
+</script>
   </section>
 
 </main>
